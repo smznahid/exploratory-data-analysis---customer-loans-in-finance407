@@ -1,15 +1,17 @@
 import yaml
+import pandas as pd
+from sqlalchemy import create_engine
 
 
 class RDSDatabaseConnector:
     '''
-    A Class used to Connect to and load data from an Amazon RDS database.
+    A Class used to Connect to and load data from a postgres Amazon RDS database.
 
     Args:
         credentials (dict): argument takes a dictionary to read credentials for connecting to a RDS Database (refer to yaml_loader for more information).
     
     Attributes:
-        DATABASE_TYPE (string): the type of database class will be connecting to.
+        DATABASE_TYPE (string): the type of database class will be connecting to (postgres).
         DBAPI (string): API class will be using with SQLAlchemy
         HOST (string): URL to host RDS)
         USER (string): username of SQL user.
@@ -46,3 +48,6 @@ class RDSDatabaseConnector:
             credentials_dict = yaml.safe_load(credentials)
             return credentials_dict
     
+    def create_engine_sqlalchemy(self):
+        engine = create_engine(f"{self.DATABASE_TYPE}+{self.DBAPI}://{self.USER}:{self.PASSWORD}@{self.HOST}:{self.PORT}/{self.DATABASE}")
+        return engine
