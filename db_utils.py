@@ -49,5 +49,38 @@ class RDSDatabaseConnector:
             return credentials_dict
     
     def create_engine_sqlalchemy(self):
+        '''
+        a method to create a SQLAlchemy engine used to extract data from a database.
+
+        Args:
+            None
+        
+        Returns:
+            engine (class instance): engine used to load and extract data from RDS database.
+        '''
         engine = create_engine(f"{self.DATABASE_TYPE}+{self.DBAPI}://{self.USER}:{self.PASSWORD}@{self.HOST}:{self.PORT}/{self.DATABASE}")
         return engine
+    
+    def dataframe_creator(self):
+        '''
+        method used to create a dataframe using engine from SQLAlchemy.
+
+        Args:
+            None
+        Returns:
+            pd.read_sql_table (pd.DataFrame): extracted data into a dataframe using engine.
+        '''
+        engine = self.create_engine_sqlalchemy()
+        return pd.read_sql_table('loan_payments', engine)
+    
+    def save_to_csv(self):
+        '''
+        method used to save extracted dataframe into a csv file.
+
+        Args:
+            None
+        Returns:
+            None
+        '''
+        loan_payments = self.dataframe_creator()
+        loan_payments.to_csv('loan_payments.csv')
