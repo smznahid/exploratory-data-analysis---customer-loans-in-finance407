@@ -34,7 +34,7 @@ class RDSDatabaseConnector:
         self.PORT = credentials["RDS_PORT"]
 
     @staticmethod
-    def yaml_loader():
+    def yaml_creds_loader():
         '''
         A staticmethod used to load credential data from credential yaml file. This function will typically used to initialise the RDSDatabaseConnector class instance.
 
@@ -48,7 +48,7 @@ class RDSDatabaseConnector:
             credentials_dict = yaml.safe_load(credentials)
             return credentials_dict
     
-    def create_engine_sqlalchemy(self):
+    def init_engine_sqlalchemy(self):
         '''
         a method to create a SQLAlchemy engine used to extract data from a database.
 
@@ -70,10 +70,10 @@ class RDSDatabaseConnector:
         Returns:
             pd.read_sql_table (pd.DataFrame): extracted data into a dataframe using engine.
         '''
-        engine = self.create_engine_sqlalchemy()
+        engine = self.init_engine_sqlalchemy()
         return pd.read_sql_table('loan_payments', engine)
     
-    def save_to_csv(self):
+    def save_df_to_csv(self):
         '''
         method used to save extracted dataframe into a csv file.
 
@@ -84,3 +84,10 @@ class RDSDatabaseConnector:
         '''
         loan_payments = self.dataframe_creator()
         loan_payments.to_csv('loan_payments.csv')
+
+
+if __name__ == '__main__':
+    # saving dataframe to csv file
+    credentials = RDSDatabaseConnector.yaml_creds_loader()
+    database = RDSDatabaseConnector(credentials)
+    database.save_df_to_csv()
