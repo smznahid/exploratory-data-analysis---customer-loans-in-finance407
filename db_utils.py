@@ -87,7 +87,7 @@ class RDSDatabaseConnector:
 
 
 if __name__ == '__main__':
-    # saving dataframe to csv file
+    # testing script
     credentials = RDSDatabaseConnector.yaml_creds_loader()
     database = RDSDatabaseConnector(credentials)
     database.save_df_to_csv()
