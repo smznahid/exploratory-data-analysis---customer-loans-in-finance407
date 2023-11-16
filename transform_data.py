@@ -27,4 +27,3 @@ class DataTransform:
         
         # payment_plan -> bool
         df.payment_plan = df.payment_plan.astype('bool')
-        print(df.dtypes)
