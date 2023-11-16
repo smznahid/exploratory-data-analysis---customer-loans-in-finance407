@@ -15,7 +15,7 @@ class DataFrameInfo:
     
     @staticmethod
     def distinct_values(df):
-        pass
+        return df.nunique()
 
     @staticmethod
     def df_shape(df):
@@ -23,5 +23,7 @@ class DataFrameInfo:
 
     @staticmethod
     def percent_null(df):
-        # TODO: percent_null
-        pass
+        null_values = df.isnull().sum() # sum of null values
+        total_values = len(df)
+        percentage_null = null_values / total_values * 100
+        return percentage_null
