@@ -36,3 +36,7 @@ class DataTransform:
 
        #drop Unnamed: 0 and policy_code (static value thus not important to insights)
        df.drop(columns=['Unnamed: 0', 'policy_code'], inplace=True)
+
+    @staticmethod
+    def unique_values(df):
+        return df.nunique()
