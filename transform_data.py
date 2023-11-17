@@ -30,13 +30,9 @@ class DataTransform:
     
 
     @staticmethod
-    def drop_columns(df):
-        #drop mths_since_last_delinq, mths_since_last_record, next_payment_date and mths_since_last_major_derog (TOO MANY NULLs)
-       df.drop(columns=['mths_since_last_delinq', 'mths_since_last_record', 'next_payment_date', 'mths_since_last_major_derog'], inplace=True)
-
-       #drop Unnamed: 0 and policy_code (static value thus not important to insights)
-       df.drop(columns=['Unnamed: 0', 'policy_code'], inplace=True)
-
+    def drop_columns(df: pd.DataFrame, columns: list):
+       df.drop(columns=columns, inplace=True)
+    
     @staticmethod
-    def unique_values(df):
-        return df.nunique()
+    def drop_null_rows_from_columns(df: pd.DataFrame, columns: list):
+        df.dropna(subset=columns, inplace=True)
