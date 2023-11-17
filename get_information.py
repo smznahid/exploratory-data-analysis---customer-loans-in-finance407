@@ -27,3 +27,7 @@ class DataFrameInfo:
         total_values = len(df)
         percentage_null = null_values / total_values * 100
         return percentage_null
+    
+    @staticmethod
+    def count_values(df, column):
+        return df[column].value_counts()
