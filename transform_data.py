@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 class DataTransform:
@@ -36,3 +37,14 @@ class DataTransform:
     @staticmethod
     def drop_null_rows_from_columns(df: pd.DataFrame, columns: list):
         df.dropna(subset=columns, inplace=True)
+
+    @staticmethod
+    def log_transform(df, column, y=0):
+        return df[column].map(lambda i: np.log(i+y) if i+y > 0 else 0)
+    
+    @staticmethod
+    def boxcox_transform(df, column, lmbda):
+        if lmbda != 0:
+            return df[column].map(lambda x: ((x**lmbda) - 1) / lmbda)
+        else:
+            return df[column].map(lambda x: np.log(x) if x>0 else 0)
