@@ -1,6 +1,13 @@
 import plotly.express as px
 
 class Plotter:
-    def __init__(self):
-        #TODO: finish plotter module
-        pass
+    
+
+    @staticmethod
+    def plot_boxplot(df):
+        return px.box(df)
+
+
+    @staticmethod
+    def correlation_matrix(df):
+        px.imshow(df.corr(), title="Correlation matrix")
