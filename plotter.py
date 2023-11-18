@@ -1,4 +1,6 @@
 import plotly.express as px
+import missingno as msno
+
 
 class Plotter:
     
@@ -10,4 +12,8 @@ class Plotter:
 
     @staticmethod
     def correlation_matrix(df):
-        px.imshow(df.corr(), title="Correlation matrix")
+        return px.imshow(df.corr(), title="Correlation matrix")
+    
+    @staticmethod
+    def null_matrix(df):
+        return msno.matrix(df)
