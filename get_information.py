@@ -31,3 +31,8 @@ class DataFrameInfo:
     @staticmethod
     def count_values(df, column):
         return df[column].value_counts()
+    
+    @staticmethod
+    def get_null_greater_than_zero(df):
+        null_values = DataFrameInfo.percent_null(df)
+        return null_values[null_values > 0]
