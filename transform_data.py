@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from scipy.stats import yeojohnson
+from get_information import DataFrameInfo
 
 
 class DataTransform:
@@ -60,3 +61,9 @@ class DataTransform:
         yeojohnson_transformation = yeojohnson(yeojohnson_transformation, lmbda)
         yeojohnson_transformation = pd.Series(yeojohnson_transformation)
         return yeojohnson_transformation
+    
+
+    @staticmethod
+    def remove_outliers(df, column):
+        outliers = DataFrameInfo.find_outliers(df, column)
+        df.drop(outliers.index.values, axis=0, inplace=True)
