@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from scipy.stats import yeojohnson
 
 
 class DataTransform:
@@ -40,11 +41,22 @@ class DataTransform:
 
     @staticmethod
     def log_transform(df, column, y=0):
-        return df[column].map(lambda i: np.log(i+y) if i+y > 0 else 0)
+        transformation = df[column].map(lambda i: np.log(i+y) if i+y > 0 else 0)
+        return transformation
     
     @staticmethod
-    def boxcox_transform(df, column, lmbda):
+    def boxcox_transform(df, column, lmbda=0):
         if lmbda != 0:
-            return df[column].map(lambda x: ((x**lmbda) - 1) / lmbda)
+            transformation = df[column].map(lambda x: ((x**lmbda) - 1) / lmbda)
+            return transformation
         else:
-            return df[column].map(lambda x: np.log(x) if x>0 else 0)
+            transformation = df[column].map(lambda x: np.log(x) if x>0 else 0)
+            return transformation
+        
+    
+    @staticmethod
+    def yeojohnson_transform(df, column, lmbda=0):
+        yeojohnson_transformation = df[column]
+        yeojohnson_transformation = yeojohnson(yeojohnson_transformation, lmbda)
+        yeojohnson_transformation = pd.Series(yeojohnson_transformation)
+        return yeojohnson_transformation
