@@ -4,7 +4,8 @@
  This is a project assigned to me by AiCore as part of my Data Analytics Bootcamp, during this project I have been tasked with performing an in depth analysis on a koan portfolio of a mock company using different statistical and data visualisation techniques to find insights, patterns, anomalies and relationships found within the loan data.
 
 ---
-
+## Usage:
+in progress.
 
 ---
 ## Roadmap:
