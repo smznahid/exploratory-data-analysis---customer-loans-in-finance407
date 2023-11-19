@@ -36,3 +36,14 @@ class DataFrameInfo:
     def get_null_greater_than_zero(df):
         null_values = DataFrameInfo.percent_null(df)
         return null_values[null_values > 0]
+    
+    @staticmethod
+    def find_outliers(df, column):
+        Q1 = df[column].quantile(0.25) # first quartile
+        Q3 = df[column].quantile(0.75) # third quartile
+
+        IQR = Q3 - Q1 # inter-quartile range.
+
+        outliers = df[((df[column] < (Q1 - 1.5 * IQR)) | (df[column] > (Q3 + 1.5 * IQR)))][column]
+        return outliers
+    
