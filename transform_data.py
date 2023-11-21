@@ -56,9 +56,10 @@ class DataTransform:
         
     
     @staticmethod
-    def yeojohnson_transform(df, column, lmbda=0):
+    def yeojohnson_transform(df, column):
         yeojohnson_transformation = df[column]
-        yeojohnson_transformation = yeojohnson(yeojohnson_transformation, lmbda)
+        yeojohnson_transformation = yeojohnson(yeojohnson_transformation)
+        yeojohnson_transformation = yeojohnson(yeojohnson_transformation[:-1])
         yeojohnson_transformation = pd.Series(yeojohnson_transformation)
         return yeojohnson_transformation
     
