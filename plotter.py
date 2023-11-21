@@ -11,6 +11,10 @@ class Plotter:
 
 
     @staticmethod
+    def plot_hist(df, col):
+        return df[col].hist(bins=100)
+
+    @staticmethod
     def correlation_matrix(df):
         return px.imshow(df.corr(), title="Correlation matrix")
     
