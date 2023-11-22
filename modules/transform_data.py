@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from scipy.stats import yeojohnson
-from get_information import DataFrameInfo
+from modules.get_information import DataFrameInfo
 
 
 class DataTransform:
