@@ -1,0 +1,9 @@
+matplotlib==3.5.1
+missingno==0.5.2
+numpy==1.21.3
+pandas==1.4.2
+plotly==5.18.0
+PyYAML==6.0.1
+scipy==1.7.1
+seaborn==0.13.0
+SQLAlchemy==1.4.35
