@@ -77,7 +77,6 @@ then open the notebook and run the cells.
 
 ---
 ## Roadmap:
-Since this is particularly early in the project the first few steps on the agenda are the following:
 
 1. [x] Finish implementing ```db_utils.py``` to correctly connect and extract data from the database in the cloud.
 1. [x] Familiarise myself with the data using `get_information.py`.
